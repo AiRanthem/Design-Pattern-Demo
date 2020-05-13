@@ -8,30 +8,34 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 
 public class Main {
     public static void main(String[] args) {
-        Cake cake = new Cake();
-        System.out.println("I'll make a simple cake:");
-        cake.make();
+        Sweet cake = new Cake();
 
+        // 透明装饰器
         System.out.println("I'll make an apple cake:");
-        AppleCake appleCake = new AppleCake(cake);
+        Sweet appleCake = new AppleCake(cake);
         appleCake.make();
+//        appleCake.addApple(); // 透明装饰器还是原来的对象，不能使用装饰器类的方法
 
-        System.out.println("I'll make an orange cake:");
-        OrangeCake orangeCake = new OrangeCake(cake);
-        orangeCake.make();
-
-        System.out.println("I'll make a remix cake:");
-        AppleCake appleCake1 = new AppleCake(new OrangeCake(cake));
-        appleCake1.make();
-
+        // 装饰器嵌套
         System.out.println("I'll make a STRANGE cake:");
         Sweet wierdcake = new AppleCake(
-                new OrangeCake(
+                new AppleCake(
                         new AppleCake(
-                                new OrangeCake(cake)
+                                new AppleCake(cake)
                         )
                 )
         );
         wierdcake.make();
+
+        // 半透明装饰器
+        System.out.println("I'll make an orange cake:");
+        OrangeCake orangeCake = new OrangeCake(cake);
+        orangeCake.addOrange(); // 半透明装饰器是装饰后的对象，可以使用装饰器类的方法
+        orangeCake.make();
+
+        AppleCake apple_orange_cake = new AppleCake(orangeCake);
+        // 半透明装饰器多次装饰，只能保留最后一次装饰的额外方法，所以半透明多次装饰没有意义
+//        apple_orange_cake.addOrange();
+
     }
 }

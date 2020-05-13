@@ -9,7 +9,10 @@ public class OrangeCake extends FruitCake {
 
     @Override
     public void make() {
-        System.out.println("Orange");
         super.make();
+    }
+
+    public void addOrange(){
+        System.out.println("Orange");
     }
 }

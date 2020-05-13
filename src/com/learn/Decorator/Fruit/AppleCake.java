@@ -18,7 +18,11 @@ public class AppleCake extends FruitCake {
      */
     @Override
     public void make() {
-        System.out.println("Apple");
+        addApple();
         super.make();
+    }
+
+    public void addApple(){
+        System.out.println("Apple");
     }
 }
