@@ -7,10 +7,8 @@ import com.learn.Bridge.Gear.Gear;
  */
 public abstract class Car {
     protected Gear gear;
-
     public void setGear(Gear gear) {
         this.gear = gear;
     }
-
     public abstract void run();
 }
